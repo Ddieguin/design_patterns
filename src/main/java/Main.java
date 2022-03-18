@@ -1,16 +1,19 @@
 import Entity.*;
 import Repository.ArmaRepository;
+import Repository.CrimeRepository;
 import Repository.CriminosoRepository;
 import Repository.VitimaRepository;
+
+import java.util.*;
 
 
 public class Main {
     public static void main(String[] args)  {
 
-
         CriminosoRepository criminosoRepository = new CriminosoRepository();
         VitimaRepository vitimaRepository = new VitimaRepository();
         ArmaRepository armaRepository = new ArmaRepository();
+        CrimeRepository crimeRepository = new CrimeRepository();
 
         Vitima vitima = new Vitima.Builder().setNome("Karina Da Silva").build();
         Criminoso criminoso = new Criminoso.Builder().setNome("Joao Da Silva Vieira").build();
@@ -20,8 +23,13 @@ public class Main {
         Arma arma1 = armaRepository.save(arma);
         Criminoso criminoso1 = criminosoRepository.save(criminoso);
 
+        Crime crime = new Crime.Builder().setCriminoso(criminoso1).setArma(arma1).setVitima(vitima1).build();
+        crimeRepository.save(crime);
+
         System.out.println(vitimaRepository.findById(vitima1.getId()));
-        System.out.println(armaRepository.findById(arma1.getId()));
-        System.out.println(criminosoRepository.findById(criminoso1.getId()));
+        System.out.println(crimeRepository.findById(crime.getId()));
+        criminosoRepository.findById(criminoso1.getId()).getCrimes().forEach(System.out::println);
+        System.out.println(criminoso1.getCrimes().size());
+
     }
 }

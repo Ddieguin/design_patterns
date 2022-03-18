@@ -1,11 +1,8 @@
 package Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GenerationType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Column;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "ARMA")
@@ -21,6 +18,13 @@ public class Arma {
     @Column(name = "classe")
     private String classe;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "arma")
+    private List<Crime> crimes;
+
+    public List<Crime> getCrimes() {
+        return this.crimes;
+    }
+
     Arma(Builder builder) {
         this.nome = builder.nome;
         this.classe = builder.classe;
@@ -29,6 +33,8 @@ public class Arma {
     public static class Builder {
         public String nome;
         public String classe;
+        public List<Crime> crimes;
+
 
         public Builder setNome(String nome) {
             this.nome = nome;
@@ -37,6 +43,11 @@ public class Arma {
 
         public Builder setClasse(String classe) {
             this.classe = classe;
+            return this;
+        }
+
+        public Builder setCrimes(List<Crime> crimes) {
+            this.crimes = crimes;
             return this;
         }
 

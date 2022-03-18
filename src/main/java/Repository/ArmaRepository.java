@@ -34,7 +34,7 @@ public class ArmaRepository implements IRepository<Arma>{
     @SuppressWarnings("unchecked")
     public List<Arma> findAll() {
         em.getTransaction().begin();
-        Query query = em.createQuery("select criminoso CRIMINOSO criminoso");
+        Query query = em.createQuery("select arma ARMA arma");
         List<Arma> armas = query.getResultList();
         em.getTransaction().commit();
         return armas;
