@@ -2,7 +2,7 @@
 
 
 
-- MYSQL
+MYSQL
 
 ```bash
     
