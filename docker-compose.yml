@@ -1,0 +1,10 @@
+version: '3'
+services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: '701139-delegacia'
+      MYSQL_ROOT_PASSWORD: '123'
+    ports:
+      - "3306:3306"
