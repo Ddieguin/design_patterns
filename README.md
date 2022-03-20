@@ -2,7 +2,7 @@
 
 
 
- UP MYSQL
+ MYSQL
 
 ```bash
     sudo docker-compose up
