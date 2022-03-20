@@ -2,7 +2,7 @@
 
 
 
- MYSQL - https://localhost:3306
+ UP MYSQL
 
 ```bash
     sudo docker-compose up
