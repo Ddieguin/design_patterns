@@ -63,7 +63,7 @@ public class InterfaceGrafica extends JFrame {
         JButton btnSubmit = new JButton("Enviar");
 
         // configures the block
-        blocoArma.setLayout(new GridLayout(3,2, 40,20));
+        blocoArma.setLayout(new GridLayout(4,2,40,5));
         blocoArma.setPreferredSize(new Dimension(default_frame_width,(default_frame_height/4)));
         blocoArma.setMaximumSize(blocoArma.getPreferredSize());
         blocoArma.setMinimumSize(blocoArma.getPreferredSize());
@@ -123,6 +123,11 @@ public class InterfaceGrafica extends JFrame {
         blocoArma.add(textClasse);
         blocoArma.add(opType);
         blocoArma.add(btnSubmit);
+
+        JLabel filler1 = new JLabel();
+        JLabel filler2 = new JLabel();
+        blocoArma.add(filler1);
+        blocoArma.add(filler2);
 
         add(blocoArma);
     }
@@ -215,7 +220,7 @@ public class InterfaceGrafica extends JFrame {
         JButton btnSubmit = new JButton("Enviar");
 
         // configures the block
-        blocoCriminoso.setLayout(new GridLayout(2,2,40,80));
+        blocoCriminoso.setLayout(new GridLayout(4,2,40,5));
         blocoCriminoso.setPreferredSize(new Dimension(default_frame_width,(default_frame_height/4)));
         blocoCriminoso.setMaximumSize(blocoCriminoso.getPreferredSize());
         blocoCriminoso.setMinimumSize(blocoCriminoso.getPreferredSize());
@@ -267,6 +272,11 @@ public class InterfaceGrafica extends JFrame {
         });
 
         // places the components
+        JLabel filler1 = new JLabel();
+        JLabel filler2 = new JLabel();
+        blocoCriminoso.add(filler1);
+        blocoCriminoso.add(filler2);
+
         blocoCriminoso.add(labelNome);
         blocoCriminoso.add(textNome);
         blocoCriminoso.add(opType);
@@ -283,7 +293,7 @@ public class InterfaceGrafica extends JFrame {
         JButton btnSubmit = new JButton("Enviar");
 
         // configures the block
-        blocoVitima.setLayout(new GridLayout(2,2,40,80));
+        blocoVitima.setLayout(new GridLayout(4,2,40,5));
         blocoVitima.setPreferredSize(new Dimension(default_frame_width,(default_frame_height/4)));
         blocoVitima.setMaximumSize(blocoVitima.getPreferredSize());
         blocoVitima.setMinimumSize(blocoVitima.getPreferredSize());
@@ -339,6 +349,11 @@ public class InterfaceGrafica extends JFrame {
         blocoVitima.add(textNome);
         blocoVitima.add(opType);
         blocoVitima.add(btnSubmit);
+
+        JLabel filler1 = new JLabel();
+        JLabel filler2 = new JLabel();
+        blocoVitima.add(filler1);
+        blocoVitima.add(filler2);
 
         add(blocoVitima);
     }
