@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="gerenciador-delegacia" />
         <module name="gerenciador_delegacia" />
+        <module name="police_station_manager" />
       </profile>
     </annotationProcessing>
   </component>

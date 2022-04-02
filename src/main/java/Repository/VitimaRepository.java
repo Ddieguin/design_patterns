@@ -9,7 +9,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.util.List;
 
-public class VitimaRepository {
+public class VitimaRepository implements IRepository<Vitima> {
     EntityManagerFactory emf;
     EntityManager em;
 
