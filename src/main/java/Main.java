@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args)  {
         // init the window
         InterfaceGrafica controladorInterface = new InterfaceGrafica();
-//
+
 //        CriminosoRepository criminosoRepository = new CriminosoRepository();
 //        VitimaRepository vitimaRepository = new VitimaRepository();
 //        ArmaRepository armaRepository = new ArmaRepository();
@@ -28,5 +28,6 @@ public class Main {
 //        criminosoRepository.findById(criminoso1.getId()).getCrimes().forEach(System.out::println);
 //        System.out.println(criminoso1.getCrimes().size());
     }
+
 
 }

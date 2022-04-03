@@ -1,5 +1,8 @@
 package Visual;
 
+import Entity.Arma;
+import Factory.ArmaFactory;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,17 +14,21 @@ public class InterfaceGrafica extends JFrame {
 
     private static int default_frame_width = 800;
     private static int default_frame_height = 600;
-    private JPanel blocoArma, blocoCrime, blocoCriminoso, blocoVitima;
-    public int opTypeArma, opTypeCrime, opTypeCriminoso, opTypeVitima;
+
+    public JPanel blocoArma, blocoCrime, blocoCriminoso, blocoVitima;
+
+    public JTextArea output;
 
     public InterfaceGrafica() {
         super("Gerência da Delegacia");
-
         // configures the window
         configureWindow();
 
         // inserts the main window
         buildMainWindow();
+
+        // defines all events for the buttons
+        defineEvents();
 
         // turns the window visible for the user
         pack();
@@ -49,16 +56,20 @@ public class InterfaceGrafica extends JFrame {
         buildBlocoVitima();
 
         // prints the output
-        JTextArea output = new JTextArea();
+        output = new JTextArea();
         add(output);
     }
 
     private void buildBlocoArma() {
         // inits the components
+        JLabel labelId = new JLabel("Id:");
         JLabel labelNome = new JLabel("Nome da Arma:");
         JLabel labelClasse = new JLabel("Classe:");
+
+        JTextField textId = new JTextField();
         JTextField textNome = new JTextField();
         JTextField textClasse = new JTextField();
+
         JPanel opType = new JPanel();
         JButton btnSubmit = new JButton("Enviar");
 
@@ -69,9 +80,11 @@ public class InterfaceGrafica extends JFrame {
         blocoArma.setMinimumSize(blocoArma.getPreferredSize());
 
         // configures the components
+        labelId.setHorizontalAlignment(SwingConstants.CENTER);
         labelNome.setHorizontalAlignment(SwingConstants.CENTER);
         labelClasse.setHorizontalAlignment(SwingConstants.CENTER);
 
+        textId.setBorder(BorderFactory.createCompoundBorder(textId.getBorder(), BorderFactory.createEmptyBorder(5, 5, 5, 5)));
         textNome.setBorder(BorderFactory.createCompoundBorder(textNome.getBorder(), BorderFactory.createEmptyBorder(5, 5, 5, 5)));
         textClasse.setBorder(BorderFactory.createCompoundBorder(textClasse.getBorder(), BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
@@ -112,11 +125,13 @@ public class InterfaceGrafica extends JFrame {
         btnSubmit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Botão pressionado.");
+                System.out.println("");
             }
         });
 
         // places the components
+        blocoArma.add(labelId);
+        blocoArma.add(textId);
         blocoArma.add(labelNome);
         blocoArma.add(textNome);
         blocoArma.add(labelClasse);
@@ -124,36 +139,42 @@ public class InterfaceGrafica extends JFrame {
         blocoArma.add(opType);
         blocoArma.add(btnSubmit);
 
-        JLabel filler1 = new JLabel();
-        JLabel filler2 = new JLabel();
-        blocoArma.add(filler1);
-        blocoArma.add(filler2);
+//        JLabel filler1 = new JLabel();
+//        JLabel filler2 = new JLabel();
+//        blocoArma.add(filler1);
+//        blocoArma.add(filler2);
 
         add(blocoArma);
     }
 
     private void buildBlocoCrime() {
         // inits the components
+        JLabel labelId = new JLabel("Id:");
         JLabel labelCriminoso = new JLabel("Criminoso:");
         JLabel labelVitima = new JLabel("Vitima:");
         JLabel labelArma = new JLabel("Arma:");
+
+        JTextField textId = new JTextField();
         JTextField textCriminoso = new JTextField();
         JTextField textVitima = new JTextField();
         JTextField textArma = new JTextField();
+
         JPanel opType = new JPanel();
         JButton btnSubmit = new JButton("Enviar");
 
         // configures the block
-        blocoCrime.setLayout(new GridLayout(4,2,40,5));
+        blocoCrime.setLayout(new GridLayout(5,2,40,5));
         blocoCrime.setPreferredSize(new Dimension(default_frame_width,(default_frame_height/4)));
         blocoCrime.setMaximumSize(blocoCrime.getPreferredSize());
         blocoCrime.setMinimumSize(blocoCrime.getPreferredSize());
 
         // configures the components
+        labelId.setHorizontalAlignment(SwingConstants.CENTER);
         labelCriminoso.setHorizontalAlignment(SwingConstants.CENTER);
         labelVitima.setHorizontalAlignment(SwingConstants.CENTER);
         labelArma.setHorizontalAlignment(SwingConstants.CENTER);
 
+        textId.setBorder(BorderFactory.createCompoundBorder(textId.getBorder(), BorderFactory.createEmptyBorder(5, 5, 5, 5)));
         textCriminoso.setBorder(BorderFactory.createCompoundBorder(textCriminoso.getBorder(), BorderFactory.createEmptyBorder(5, 5, 5, 5)));
         textVitima.setBorder(BorderFactory.createCompoundBorder(textVitima.getBorder(), BorderFactory.createEmptyBorder(5, 5, 5, 5)));
         textArma.setBorder(BorderFactory.createCompoundBorder(textArma.getBorder(), BorderFactory.createEmptyBorder(5, 5, 5, 5)));
@@ -195,11 +216,13 @@ public class InterfaceGrafica extends JFrame {
         btnSubmit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Botão pressionado.");
+                System.out.println("");
             }
         });
 
         // places the components
+        blocoCrime.add(labelId);
+        blocoCrime.add(textId);
         blocoCrime.add(labelCriminoso);
         blocoCrime.add(textCriminoso);
         blocoCrime.add(labelVitima);
@@ -214,8 +237,12 @@ public class InterfaceGrafica extends JFrame {
 
     private void buildBlocoCriminoso() {
         // inits the components
+        JLabel labelId = new JLabel("Id:");
         JLabel labelNome = new JLabel("Nome do Criminoso:");
+
+        JTextField textId = new JTextField();
         JTextField textNome = new JTextField();
+
         JPanel opType = new JPanel();
         JButton btnSubmit = new JButton("Enviar");
 
@@ -226,8 +253,10 @@ public class InterfaceGrafica extends JFrame {
         blocoCriminoso.setMinimumSize(blocoCriminoso.getPreferredSize());
 
         // configures the components
+        labelId.setHorizontalAlignment(SwingConstants.CENTER);
         labelNome.setHorizontalAlignment(SwingConstants.CENTER);
 
+        textId.setBorder(BorderFactory.createCompoundBorder(textId.getBorder(), BorderFactory.createEmptyBorder(5, 5, 5, 5)));
         textNome.setBorder(BorderFactory.createCompoundBorder(textNome.getBorder(), BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
         // defines the operation type
@@ -267,16 +296,18 @@ public class InterfaceGrafica extends JFrame {
         btnSubmit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Botão pressionado.");
+                System.out.println("");
             }
         });
 
         // places the components
-        JLabel filler1 = new JLabel();
-        JLabel filler2 = new JLabel();
-        blocoCriminoso.add(filler1);
-        blocoCriminoso.add(filler2);
+//        JLabel filler1 = new JLabel();
+//        JLabel filler2 = new JLabel();
+//        blocoCriminoso.add(filler1);
+//        blocoCriminoso.add(filler2);
 
+        blocoCriminoso.add(labelId);
+        blocoCriminoso.add(textId);
         blocoCriminoso.add(labelNome);
         blocoCriminoso.add(textNome);
         blocoCriminoso.add(opType);
@@ -287,8 +318,12 @@ public class InterfaceGrafica extends JFrame {
 
     private void buildBlocoVitima() {
         // inits the components
+        JLabel labelId = new JLabel("Id:");
         JLabel labelNome = new JLabel("Nome da Vítima:");
+
+        JTextField textId = new JTextField();
         JTextField textNome = new JTextField();
+
         JPanel opType = new JPanel();
         JButton btnSubmit = new JButton("Enviar");
 
@@ -299,8 +334,10 @@ public class InterfaceGrafica extends JFrame {
         blocoVitima.setMinimumSize(blocoVitima.getPreferredSize());
 
         // configures the components
+        labelId.setHorizontalAlignment(SwingConstants.CENTER);
         labelNome.setHorizontalAlignment(SwingConstants.CENTER);
 
+        textId.setBorder(BorderFactory.createCompoundBorder(textId.getBorder(), BorderFactory.createEmptyBorder(5, 5, 5, 5)));
         textNome.setBorder(BorderFactory.createCompoundBorder(textNome.getBorder(), BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
         // defines the operation type
@@ -340,11 +377,13 @@ public class InterfaceGrafica extends JFrame {
         btnSubmit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Botão pressionado.");
+                System.out.println("");
             }
         });
 
         // places the components
+        blocoVitima.add(labelId);
+        blocoVitima.add(textId);
         blocoVitima.add(labelNome);
         blocoVitima.add(textNome);
         blocoVitima.add(opType);
@@ -358,5 +397,39 @@ public class InterfaceGrafica extends JFrame {
         add(blocoVitima);
     }
 
+    private void defineEvents() {
+        // defines the arma block operation action
+        JButton btn = (JButton) blocoArma.getComponent(7);
+        btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Component[] componentes = blocoArma.getComponents();
+                String opType = null;
+
+                // defining the operations
+                Component[] btn_radio = ((JPanel) componentes[6]).getComponents();
+
+                for (Component componente: btn_radio) {
+                    JRadioButton aux = (JRadioButton) componente;
+                    if(aux.isSelected()) opType = new String(aux.getText());
+                }
+
+                if(opType != null) {
+                    debug("operation: " + opType);
+
+                } else {
+                    debug("No operation selected: Listing db.");
+                    for(Arma arma:ArmaFactory.build().find()) {
+                        debug(arma.toString());
+                    };
+                }
+            }
+        });
+    }
+
+    public void debug(String a){
+        System.out.println(a);
+        output.setText(output.getText()+"\n"+a+"\n");
+    }
 }
 
