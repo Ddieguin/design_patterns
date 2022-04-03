@@ -19,6 +19,11 @@ public class ControllerArma implements  IController<Arma> {
     }
 
     @Override
+    public Arma findByName(String name) {
+        return armaRepository.findByName(name);
+    }
+
+    @Override
     public Arma index(int id) {
         return armaRepository.findById(id);
     }

@@ -28,6 +28,9 @@ public class ControllerVitima implements IController<Vitima> {
     }
 
     @Override
+    public Vitima findByName(String name) {  return vitimaRepository.findByName(name); }
+
+    @Override
     public boolean update(int id, Vitima vitima) {
         return vitimaRepository.update(id, vitima);
     }

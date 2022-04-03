@@ -8,4 +8,5 @@ public interface IRepository<T> {
     public List<T> findAll();
     public void delete(int id);
     public boolean update(int id, T object);
+    public T findByName(String nome);
 }

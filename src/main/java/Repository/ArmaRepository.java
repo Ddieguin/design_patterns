@@ -34,7 +34,7 @@ public class ArmaRepository implements IRepository<Arma>{
     @SuppressWarnings("unchecked")
     public List<Arma> findAll() {
         em.getTransaction().begin();
-        Query query = em.createQuery("select arma ARMA arma");
+        Query query = em.createQuery("from Arma", Arma.class);
         List<Arma> armas = query.getResultList();
         em.getTransaction().commit();
         return armas;
@@ -45,6 +45,16 @@ public class ArmaRepository implements IRepository<Arma>{
         Arma arma = em.find(Arma.class, id);
         em.remove(arma);
         em.getTransaction().commit();
+    }
+
+    @SuppressWarnings("unchecked")
+    public Arma findByName(String name) {
+        em.getTransaction().begin();
+        Query query = em.createQuery("select arma from Arma arma where arma.nome = :nome");
+        query.setParameter("nome", name);
+        List<Arma> arma = query.getResultList();
+        em.getTransaction().commit();
+        return arma.get(0);
     }
 
     public boolean update(int id, Arma arma) {

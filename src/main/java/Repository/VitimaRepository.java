@@ -33,10 +33,20 @@ public class VitimaRepository implements IRepository<Vitima> {
     @SuppressWarnings("unchecked")
     public List<Vitima> findAll() {
         em.getTransaction().begin();
-        Query query = em.createQuery("select vitima VITIMA vitima");
+        Query query = em.createQuery("select vitima Vitima vitima");
         List<Vitima> vitimas = query.getResultList();
         em.getTransaction().commit();
         return vitimas;
+    }
+
+    @SuppressWarnings("unchecked")
+    public Vitima findByName(String nome) {
+        em.getTransaction().begin();
+        Query query = em.createQuery("select vitima Vitima vitima where vitima.nome = :nome");
+        query.setParameter("nome", nome);
+        em.getTransaction().commit();
+        List<Vitima> vitima = query.getResultList();
+        return vitima.get(0);
     }
 
     public void delete(int id) {
@@ -45,6 +55,7 @@ public class VitimaRepository implements IRepository<Vitima> {
         em.remove(vitima);
         em.getTransaction().commit();
     }
+
 
     public boolean update(int id, Vitima vitima) {
         try{

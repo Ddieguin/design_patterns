@@ -29,6 +29,11 @@ public class ControllerCrime implements IController<Crime> {
     }
 
     @Override
+    public Crime findByName(String name) {
+        return crimeRepository.findByName(name);
+    }
+
+    @Override
     public List<Crime> find() {
         return crimeRepository.findAll();
     }

@@ -14,6 +14,11 @@ public class ControllerCriminoso implements IController<Criminoso> {
     }
 
     @Override
+    public Criminoso findByName(String name) {
+        return criminosoRepository.findByName(name);
+    }
+
+    @Override
     public Criminoso index(int id) {
        return criminosoRepository.findById(id);
     }

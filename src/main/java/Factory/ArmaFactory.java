@@ -5,7 +5,7 @@ import controller.ControllerArma;
 
 public class ArmaFactory {
 
-    private static ControllerArma instance;
+    private static ControllerArma instance = null;
 
 
     public static ControllerArma build() {

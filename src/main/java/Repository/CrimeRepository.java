@@ -34,10 +34,14 @@ public class CrimeRepository implements IRepository<Crime> {
     @SuppressWarnings("unchecked")
     public List<Crime> findAll() {
         em.getTransaction().begin();
-        Query query = em.createQuery("select crime CRIME crime");
+        Query query = em.createQuery("select crime Crime crime");
         List<Crime> crimes = query.getResultList();
         em.getTransaction().commit();
         return crimes;
+    }
+
+    public Crime findByName(String localCrime) {
+        return findAll().get(0);
     }
 
     public void delete(int id) {

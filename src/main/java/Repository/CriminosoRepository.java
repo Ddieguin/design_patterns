@@ -15,6 +15,8 @@ public class CriminosoRepository implements IRepository<Criminoso> {
         em = emf.createEntityManager();
     }
 
+
+
     public Criminoso save(Criminoso criminoso) {
         em.getTransaction().begin();
         em.persist(criminoso);
@@ -29,10 +31,20 @@ public class CriminosoRepository implements IRepository<Criminoso> {
     @SuppressWarnings("unchecked")
     public List<Criminoso> findAll() {
         em.getTransaction().begin();
-        Query query = em.createQuery("select criminoso CRIMINOSO criminoso");
+        Query query = em.createQuery("select criminoso Criminoso criminoso");
         List<Criminoso> criminosos = query.getResultList();
         em.getTransaction().commit();
         return criminosos;
+    }
+
+    @SuppressWarnings("unchecked")
+    public Criminoso findByName(String nome) {
+        em.getTransaction().begin();
+        Query query = em.createQuery("select criminoso Criminoso criminoso where criminoso.nome = :nome");
+        query.setParameter("nome", nome);
+        List<Criminoso> criminoso = query.getResultList();
+        em.getTransaction().commit();
+        return criminoso.get(0);
     }
 
     public void delete(int id) {
