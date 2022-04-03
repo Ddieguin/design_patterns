@@ -1,7 +1,6 @@
 package Entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -68,6 +67,7 @@ public class Arma {
     public int getId() {
         return this.id;
     }
+
 
     @Override
     public String toString() {

@@ -416,7 +416,12 @@ public class InterfaceGrafica extends JFrame {
 
                 if(opType != null) {
                     debug("operation: " + opType);
-
+                    if (opType.equals("Inserir"))
+                        ArmaFactory.build().save(new Arma.Builder().setNome(((JTextField) componentes[3]).getText()).setClasse(((JTextField) componentes[5]).getText()).build());
+                    else if (opType.equals("Buscar"))
+                        ArmaFactory.build().index(Integer.parseInt(((JTextField) componentes[1]).getText()));
+                    else
+                        ArmaFactory.build().delete(Integer.parseInt(((JTextField) componentes[1]).getText()));
                 } else {
                     debug("No operation selected: Listing db.");
                     for(Arma arma:ArmaFactory.build().find()) {
