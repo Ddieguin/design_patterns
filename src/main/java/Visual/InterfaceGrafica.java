@@ -440,16 +440,14 @@ public class InterfaceGrafica extends JFrame {
                                         .findByName(
                                                 ((JTextField) componentes[3])
                                                         .getText())
-                                        .toString);
+                                        .toString());
                     else
                         ArmaFactory.build()
                                 .delete(
-                                        Integer.parseInt(
-                                                ArmaFactory.build()
-                                                        .findByName(
-                                                                ((JTextField) componentes[3])
-                                                                        .getText())
-                                                        .getId()));
+                                        ArmaFactory.build()
+                                                .findByName(
+                                                        ((JTextField) componentes[3]).getText())
+                                                .getId());
                 } else {
                     debug("No operation selected: Listing db.");
 
@@ -484,13 +482,17 @@ public class InterfaceGrafica extends JFrame {
                                                         CriminosoFactory.build()
                                                                 .findByName(
                                                                         ((JTextField) componentes[3])
-                                                                                .getText())
-                                                                .setVitima(
-                                                                        VitimaFactory.build()
-                                                                                .findByName(
-                                                                                        ((JTextField) componentes[5])
-                                                                                                .getText()))
-                                                                .setArma(ArmaFactory.build().findByName(((JTextField) componentes[7]).getText()))));
+                                                                                .getText()))
+                                                .setVitima(
+                                                        VitimaFactory.build()
+                                                                .findByName(
+                                                                        ((JTextField) componentes[5])
+                                                                                .getText()))
+                                                .setArma(
+                                                        ArmaFactory.build()
+                                                                .findByName(
+                                                                        ((JTextField) componentes[7])
+                                                                                .getText())).build());
                     else if (opType.equals("Buscar"))
                         CrimeFactory.build().index(Integer.parseInt(((JTextField) componentes[1]).getText()));
                     else
@@ -538,12 +540,11 @@ public class InterfaceGrafica extends JFrame {
                     else
                         CriminosoFactory.build()
                                 .delete(
-                                        Integer.parseInt(
-                                                CriminosoFactory.build()
-                                                        .findByName(
-                                                                ((JTextField) componentes[3])
-                                                                        .getText())
-                                                        .getId()));
+                                        CriminosoFactory.build()
+                                                .findByName(
+                                                        ((JTextField) componentes[3])
+                                                                .getText())
+                                                .getId());
                 } else {
                     debug("No operation selected: Listing db.");
 
@@ -588,12 +589,11 @@ public class InterfaceGrafica extends JFrame {
                     else
                         VitimaFactory.build()
                                 .delete(
-                                        Integer.parseInt(
-                                                VitimaFactory.build()
-                                                        .findByName(
-                                                                ((JTextField) componentes[3])
-                                                                        .getText())
-                                                        .getId()));
+                                        VitimaFactory.build()
+                                                .findByName(
+                                                        ((JTextField) componentes[3])
+                                                                .getText())
+                                                .getId());
                 } else {
                     debug("No operation selected: Listing db.");
 
