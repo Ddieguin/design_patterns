@@ -1,7 +1,13 @@
 package Visual;
 
 import Entity.Arma;
+import Entity.Crime;
+import Entity.Criminoso;
+import Entity.Vitima;
 import Factory.ArmaFactory;
+import Factory.CrimeFactory;
+import Factory.CriminosoFactory;
+import Factory.VitimaFactory;
 
 import javax.swing.*;
 import java.awt.*;
@@ -57,6 +63,7 @@ public class InterfaceGrafica extends JFrame {
 
         // prints the output
         output = new JTextArea();
+        output.scrollRectToVisible(new Rectangle());
         add(output);
     }
 
@@ -417,16 +424,180 @@ public class InterfaceGrafica extends JFrame {
                 if(opType != null) {
                     debug("operation: " + opType);
                     if (opType.equals("Inserir"))
-                        ArmaFactory.build().save(new Arma.Builder().setNome(((JTextField) componentes[3]).getText()).setClasse(((JTextField) componentes[5]).getText()).build());
+                        ArmaFactory.build()
+                                .save(
+                                        new Arma.Builder()
+                                                .setNome(
+                                                        ((JTextField) componentes[3])
+                                                                .getText())
+                                                .setClasse(
+                                                        ((JTextField) componentes[5])
+                                                                .getText())
+                                                .build());
                     else if (opType.equals("Buscar"))
-                        ArmaFactory.build().index(Integer.parseInt(((JTextField) componentes[1]).getText()));
+                        debug(
+                                ArmaFactory.build()
+                                        .findByName(
+                                                ((JTextField) componentes[3])
+                                                        .getText())
+                                        .toString);
                     else
-                        ArmaFactory.build().delete(Integer.parseInt(((JTextField) componentes[1]).getText()));
+                        ArmaFactory.build()
+                                .delete(
+                                        Integer.parseInt(
+                                                ArmaFactory.build()
+                                                        .findByName(
+                                                                ((JTextField) componentes[3])
+                                                                        .getText())
+                                                        .getId()));
                 } else {
                     debug("No operation selected: Listing db.");
-                    for(Arma arma:ArmaFactory.build().find()) {
-                        debug(arma.toString());
-                    };
+
+                    for(Arma arma:ArmaFactory.build().find()) debug(arma.toString());
+                }
+            }
+        });
+
+        // defines the crime block operation action
+        btn = (JButton) blocoCrime.getComponent(9);
+        btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Component[] componentes = blocoCrime.getComponents();
+                String opType = null;
+
+                // defining the operations
+                Component[] btn_radio = ((JPanel) componentes[8]).getComponents();
+
+                for (Component componente: btn_radio) {
+                    JRadioButton aux = (JRadioButton) componente;
+                    if(aux.isSelected()) opType = new String(aux.getText());
+                }
+
+                if(opType != null) {
+                    debug("operation: " + opType);
+                    if (opType.equals("Inserir"))
+                        CrimeFactory.build()
+                                .save(
+                                        new Crime.Builder()
+                                                .setCriminoso(
+                                                        CriminosoFactory.build()
+                                                                .findByName(
+                                                                        ((JTextField) componentes[3])
+                                                                                .getText())
+                                                                .setVitima(
+                                                                        VitimaFactory.build()
+                                                                                .findByName(
+                                                                                        ((JTextField) componentes[5])
+                                                                                                .getText()))
+                                                                .setArma(ArmaFactory.build().findByName(((JTextField) componentes[7]).getText()))));
+                    else if (opType.equals("Buscar"))
+                        CrimeFactory.build().index(Integer.parseInt(((JTextField) componentes[1]).getText()));
+                    else
+                        CrimeFactory.build().delete(Integer.parseInt(((JTextField) componentes[1]).getText()));
+                } else {
+                    debug("No operation selected: Listing db.");
+
+                    for(Crime crime:CrimeFactory.build().find()) debug(crime.toString());
+                }
+            }
+        });
+
+        // defines the criminoso block operation actions
+        btn = (JButton) blocoCriminoso.getComponent(5);
+        btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Component[] componentes = blocoCriminoso.getComponents();
+                String opType = null;
+
+                // defining the operations
+                Component[] btn_radio = ((JPanel) componentes[4]).getComponents();
+
+                for (Component componente: btn_radio) {
+                    JRadioButton aux = (JRadioButton) componente;
+                    if(aux.isSelected()) opType = new String(aux.getText());
+                }
+
+                if(opType != null) {
+                    debug("operation: " + opType);
+                    if (opType.equals("Inserir"))
+                        CriminosoFactory.build().save(
+                                new Criminoso.Builder()
+                                        .setNome(
+                                                ((JTextField) componentes[3])
+                                                        .getText())
+                                        .build());
+                    else if (opType.equals("Buscar"))
+                        debug(
+                                CriminosoFactory.build()
+                                        .findByName(
+                                                ((JTextField) componentes[3])
+                                                        .getText())
+                                        .toString());
+                    else
+                        CriminosoFactory.build()
+                                .delete(
+                                        Integer.parseInt(
+                                                CriminosoFactory.build()
+                                                        .findByName(
+                                                                ((JTextField) componentes[3])
+                                                                        .getText())
+                                                        .getId()));
+                } else {
+                    debug("No operation selected: Listing db.");
+
+                    for(Criminoso criminoso:CriminosoFactory.build().find()) debug(criminoso.toString());
+                }
+            }
+        });
+
+        // defines the vitima block operation actions
+        btn = (JButton) blocoVitima.getComponent(5);
+        btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Component[] componentes = blocoVitima.getComponents();
+                String opType = null;
+
+                // defining the operations
+                Component[] btn_radio = ((JPanel) componentes[4]).getComponents();
+
+                for (Component componente: btn_radio) {
+                    JRadioButton aux = (JRadioButton) componente;
+                    if(aux.isSelected()) opType = new String(aux.getText());
+                }
+
+                if(opType != null) {
+                    debug("operation: " + opType);
+                    if (opType.equals("Inserir"))
+                        VitimaFactory.build()
+                                .save(
+                                        new Vitima.Builder()
+                                                .setNome(
+                                                        ((JTextField) componentes[3])
+                                                                .getText())
+                                                .build());
+                    else if (opType.equals("Buscar"))
+                        debug(
+                                VitimaFactory.build()
+                                        .findByName(
+                                                ((JTextField) componentes[3])
+                                                        .getText())
+                                        .toString());
+                    else
+                        VitimaFactory.build()
+                                .delete(
+                                        Integer.parseInt(
+                                                VitimaFactory.build()
+                                                        .findByName(
+                                                                ((JTextField) componentes[3])
+                                                                        .getText())
+                                                        .getId()));
+                } else {
+                    debug("No operation selected: Listing db.");
+
+                    for(Vitima vitima:VitimaFactory.build().find()) debug(vitima.toString());
                 }
             }
         });
